@@ -53,7 +53,26 @@ window.addEventListener('load', initialHightlightLocation);
 window.addEventListener('resize', initialHightlightLocation);
 buttons.forEach(button => button.addEventListener('click', handleClick));
 
+function get_time() {
+  var date = new Date;
 
+
+  var seconds = date.getSeconds();
+  var minutes = date.getMinutes();
+  var hour = date.getHours();
+
+  time_now = hour + ':' + minutes + ':' + seconds;
+  return time_now
+}
+function get_date_now() {
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = mm + '/' + dd + '/' + yyyy;
+  return today
+}
 //mycart
 $(function () {
 
@@ -78,11 +97,25 @@ $(function () {
     checkoutCart: function(products) {
       let city = $("#city_input").val();
       let addres = $("#addres_input").val();
+      let phone_number = $("#tel_input").val();
       alert("the order send to\n"+
       "City:"+city+"\n "+
       "addres:"+addres+"\n "+
       "Delivery will arrive in 30 minutes\n "
       )
+      var timestamp = new Date().getUTCMilliseconds();
+      firebase.database().ref("orders/"+timestamp).set({
+        city:city,
+        uid:user_now.uid,
+        addres:addres,
+        name:G_user_name,
+        products:products,
+        phone_number: phone_number,
+        date:get_date_now(),
+        time:get_time()
+      });   
+
+      console.log("user_now  "+user_now.uid);
     },
     clickOnAddToCart: function($addTocart){
       goToCartIcon($addTocart);

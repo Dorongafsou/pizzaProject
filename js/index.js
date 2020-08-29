@@ -1,4 +1,6 @@
-var path = "/users"
+var path = "/users";
+var user_now ;
+var G_user_name
 $(document).ready(function () {
     logout_btn();
     is_login();
@@ -9,11 +11,12 @@ $(document).ready(function () {
 function is_login() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
+            user_now = user;
             console.log(user);
             console.log("log in");
             firebase.database().ref(path+"/"+user.uid).once('value').then(function (snapshot) {
                 data_user = snapshot.val();
-                data_user.name
+                G_user_name = data_user.name
                 $("#hello_user").css("color","red")
                 $("#hello_user").text("hello "+data_user.name);
               });

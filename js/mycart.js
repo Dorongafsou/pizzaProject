@@ -172,8 +172,9 @@
         '<h5 class="modal-title" id="myModalLabel"> &nbsp; My Cart</h5>' +
         '</div>' +
         '<div class="modal-body">' +
-        '<input  id="city_input" type="text" class="form-control" id="InputCity"  placeholder="city" required="">'+
-        '<input  id="addres_input" type="text" class="form-control" id="Inputaddres"  placeholder="addres" required="">'+
+        '<input  id="city_input" type="text" class="form-control"   placeholder="city" required="">'+
+        '<input  id="addres_input" type="text" class="form-control"   placeholder="addres" required="">'+
+        '<input  id="tel_input" type="text" class="form-control"   placeholder="Phone Number" required="">'+
         '<table class="table table-hover table-responsive" id="' + idCartTable + '"></table>' +
         '</div>' +
         '<div class="modal-footer">' +
