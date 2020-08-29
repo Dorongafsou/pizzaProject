@@ -14,6 +14,11 @@ function is_login() {
             user_now = user;
             console.log(user);
             console.log("log in");
+            console.log(user.email);
+            if((user.email).localeCompare("admin@admin.com")==0){
+                window.location.href = "orders.html";
+            }
+            
             firebase.database().ref(path+"/"+user.uid).once('value').then(function (snapshot) {
                 data_user = snapshot.val();
                 G_user_name = data_user.name
